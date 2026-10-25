@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="920" viewBox="0 0 1440 920" role="img" aria-labelledby="title desc">
+  <title id="title">GemmaGraph Lab 工作台界面示意图</title>
+  <desc id="desc">工作台概览示意，含侧边导航、本地模型与 Docker 状态、研究工作台主卡片、统计卡片、近期运行和快速开始。</desc>
+  <defs>
+    <linearGradient id="canvas" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f7f8fa"/><stop offset="1" stop-color="#f4f7f7"/></linearGradient>
+    <linearGradient id="banner" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#fff"/><stop offset="1" stop-color="#f0f9f6"/></linearGradient>
+    <linearGradient id="art" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0f766e"/><stop offset="1" stop-color="#8ac7b8"/></linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#1b2c36" flood-opacity=".05"/></filter>
+    <style>
+      text{font-family:Inter,"Noto Sans CJK SC","Microsoft YaHei",sans-serif;fill:#243145}
+      .muted{fill:#7a8695}.tiny{font-size:10px}.small{font-size:12px}.medium{font-size:14px}
+      .bold{font-weight:650}.caps{font-size:9px;font-weight:750;letter-spacing:1.3px;fill:#0f766e}
+      .panel{fill:#fff;stroke:#e4e7eb}.shadow{filter:url(#shadow)}
+    </style>
+  </defs>
+  <rect width="1440" height="920" rx="22" fill="url(#canvas)"/>
+  <!-- app frame -->
+  <rect x="22" y="22" width="1396" height="876" rx="17" fill="#fff" stroke="#e4e7eb"/>
+  <rect x="22" y="22" width="232" height="876" rx="17" fill="#fff"/>
+  <line x1="254" y1="22" x2="254" y2="898" stroke="#e4e7eb"/>
+  <!-- sidebar -->
+  <rect x="42" y="45" width="38" height="38" rx="11" fill="url(#art)"/>
+  <path d="M53 67c0-8 5-14 10-14s10 6 10 14M58 67l5-8 5 8" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round"/>
+  <text x="91" y="62" font-size="15" font-weight="750">GemmaGraph</text>
+  <text x="91" y="76" font-size="8" font-weight="700" letter-spacing="1.4" fill="#98a2b3">RESEARCH LAB</text>
+  <text x="44" y="128" class="caps" fill="#98a2b3">工作区</text>
+  <g font-size="12" fill="#475467">
+    <rect x="36" y="143" width="204" height="40" rx="8" fill="#edf7f5"/>
+    <rect x="22" y="151" width="3" height="24" rx="1.5" fill="#0f766e"/>
+    <rect x="50" y="155" width="13" height="13" rx="3" fill="none" stroke="#0f766e" stroke-width="1.5"/><path d="M53 163l3-3 2 2 3-4" fill="none" stroke="#0f766e" stroke-width="1.2"/>
+    <text x="75" y="168" font-weight="650" fill="#115e59">概览</text>
+    <rect x="51" y="201" width="13" height="13" rx="3" fill="none" stroke="#7b8794" stroke-width="1.5"/><text x="75" y="213">仓库</text>
+    <path d="M52 243h13m-10-4l-4 4 4 4" fill="none" stroke="#7b8794" stroke-width="1.5"/><text x="75" y="247">新建修复</text>
+    <circle cx="57" cy="278" r="6" fill="none" stroke="#7b8794" stroke-width="1.5"/><path d="M57 273v5l4 2" fill="none" stroke="#7b8794" stroke-width="1.2"/><text x="75" y="282">实验</text>
+    <circle cx="57" cy="313" r="6" fill="none" stroke="#7b8794" stroke-width="1.5"/><path d="M57 310v6m-3-3h6" stroke="#7b8794" stroke-width="1.2"/><text x="75" y="317">设置</text>
+  </g>
+  <rect x="37" y="700" width="202" height="116" rx="10" fill="#fcfcfd" stroke="#e4e7eb"/>
+  <circle cx="52" cy="721" r="3.5" fill="#16a34a"/><text x="63" y="725" class="small bold" fill="#475467">本地运行环境</text>
+  <rect x="48" y="737" width="82" height="23" rx="5" fill="#f0faf3" stroke="#d7eee0"/><circle cx="59" cy="748" r="3" fill="#15803d"/><text x="67" y="752" class="tiny bold" fill="#167546">Gemma 已配置</text>
+  <rect x="137" y="737" width="88" height="23" rx="5" fill="#fffaf0" stroke="#f5e4bf"/><circle cx="148" cy="748" r="3" fill="#b45309"/><text x="156" y="752" class="tiny bold" fill="#a35a0b">Docker 就绪</text>
+  <text x="49" y="781" class="tiny muted">模型推理与测试都在本机执行</text>
+  <text x="51" y="846" class="tiny muted">▣  LangGraph 文档</text>
+  <circle cx="52" cy="873" r="3" fill="#16a34a"/><text x="62" y="877" class="tiny muted">所有数据保存在本机</text>
+  <!-- top bar -->
+  <rect x="255" y="22" width="1163" height="56" fill="#ffffff"/>
+  <line x1="255" y1="78" x2="1418" y2="78" stroke="#e9ebef"/>
+  <text x="286" y="55" class="small muted">工作区</text><text x="333" y="55" class="small muted">/</text><text x="348" y="55" class="small bold">概览</text>
+  <circle cx="1281" cy="50" r="5" fill="#0f766e"/><text x="1293" y="54" class="small">研究模式</text>
+  <rect x="1371" y="40" width="31" height="19" rx="5" fill="#fff" stroke="#e4e7eb"/><text x="1387" y="53" text-anchor="middle" class="tiny muted">v0.1</text>
+  <!-- content -->
+  <text x="288" y="122" class="caps">GEMMAGRAPH LAB · CODE REPAIR RESEARCH</text>
+  <text x="288" y="153" font-size="24" font-weight="700">研究工作台</text>
+  <!-- hero -->
+  <g class="shadow">
+    <rect x="286" y="176" width="1096" height="204" rx="13" fill="url(#banner)" stroke="#dce9e7"/>
+    <circle cx="1298" cy="193" r="88" fill="none" stroke="#d4e8e2" stroke-width="1.3"/>
+    <circle cx="1298" cy="193" r="117" fill="none" stroke="#d4e8e2" stroke-opacity=".45" stroke-width="1.2"/>
+    <text x="318" y="213" class="caps">LOCAL SOFTWARE ENGINEERING AGENT</text>
+    <text x="318" y="251" font-size="23" font-weight="700">让每一步修复都有据可查</text>
+    <text x="318" y="279" class="small muted">将代码关系图检索、LangGraph 执行轨迹与隔离测试放在同一工作台，</text>
+    <text x="318" y="298" class="small muted">记录每次 Agent 运行与研究实验。</text>
+    <rect x="318" y="318" width="130" height="34" rx="7" fill="#0f766e"/><text x="383" y="340" text-anchor="middle" class="small bold" fill="#fff">＋ 新建修复任务</text>
+    <rect x="457" y="318" width="117" height="34" rx="7" fill="#fff" stroke="#dfe2e7"/><text x="515" y="340" text-anchor="middle" class="small bold">▧ 浏览仓库</text>
+    <text x="318" y="366" class="tiny muted">♢ 数据保存在本机</text><text x="461" y="366" class="tiny muted">⌘ Python AST 代码图</text>
+    <circle cx="1251" cy="275" r="48" fill="#e9f5f1"/>
+    <rect x="1220" y="244" width="62" height="62" rx="18" fill="url(#art)"/>
+    <path d="M1234 280c0-16 8-27 17-27s17 11 17 27M1242 280l9-13 9 13" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="1268" cy="255" r="4" fill="#d1eee5"/><circle cx="1230" cy="267" r="3" fill="#fff"/>
+  </g>
+  <!-- metrics -->
+  <g class="shadow">
+    <rect x="286" y="397" width="263" height="76" rx="11" class="panel"/><rect x="304" y="416" width="38" height="38" rx="10" fill="#edf7f5"/><text x="323" y="441" text-anchor="middle" font-size="18" fill="#28796f">▧</text><text x="355" y="428" class="tiny muted">已导入仓库</text><text x="355" y="452" font-size="21" font-weight="700">03</text>
+    <rect x="563" y="397" width="263" height="76" rx="11" class="panel"/><rect x="581" y="416" width="38" height="38" rx="10" fill="#f0f5fb"/><text x="600" y="441" text-anchor="middle" font-size="17" fill="#4a6f9d">⌘</text><text x="632" y="428" class="tiny muted">修复运行</text><text x="632" y="452" font-size="21" font-weight="700">12</text>
+    <rect x="840" y="397" width="263" height="76" rx="11" class="panel"/><rect x="858" y="416" width="38" height="38" rx="10" fill="#fff7ec"/><text x="877" y="441" text-anchor="middle" font-size="17" fill="#a56a2a">◷</text><text x="909" y="428" class="tiny muted">等待审查</text><text x="909" y="452" font-size="21" font-weight="700">02</text>
+    <rect x="1117" y="397" width="265" height="76" rx="11" class="panel"/><rect x="1135" y="416" width="38" height="38" rx="10" fill="#f3f4f6"/><text x="1154" y="441" text-anchor="middle" font-size="17" fill="#667085">⚗</text><text x="1186" y="428" class="tiny muted">研究实验</text><text x="1186" y="452" font-size="21" font-weight="700">04</text>
+  </g>
+  <!-- lower cards -->
+  <g class="shadow">
+    <rect x="286" y="490" width="645" height="365" rx="12" class="panel"/>
+    <text x="307" y="520" class="medium bold">近期运行</text><text x="307" y="540" class="tiny muted">本机保存的修复任务</text>
+    <rect x="807" y="503" width="103" height="25" rx="6" fill="#fff" stroke="#e4e7eb"/><text x="858" y="520" text-anchor="middle" class="tiny bold muted">仓库列表  ›</text>
+    <line x1="286" y1="553" x2="931" y2="553" stroke="#eef0f3"/>
+    <text x="307" y="576" class="tiny bold muted">问题描述</text><text x="584" y="576" class="tiny bold muted">仓库</text><text x="690" y="576" class="tiny bold muted">方法</text><text x="779" y="576" class="tiny bold muted">状态</text><text x="857" y="576" class="tiny bold muted">时间</text>
+    <line x1="286" y1="589" x2="931" y2="589" stroke="#f0f1f3"/>
+    <text x="307" y="615" class="small bold">空列表输入时返回 IndexError</text><text x="584" y="615" class="tiny">sample-app</text><text x="690" y="615" class="tiny" font-family="monospace">lexical_graph</text><rect x="779" y="601" width="61" height="20" rx="5" fill="#f0faf3" stroke="#d7eee0"/><text x="809" y="615" text-anchor="middle" font-size="9" fill="#167546">验证通过</text><text x="857" y="615" class="tiny muted">10:42</text>
+    <line x1="286" y1="636" x2="931" y2="636" stroke="#f0f1f3"/>
+    <text x="307" y="662" class="small bold">日期解析应保留时区信息</text><text x="584" y="662" class="tiny">calendar</text><text x="690" y="662" class="tiny" font-family="monospace">lexical</text><rect x="779" y="648" width="51" height="20" rx="5" fill="#fffaf0" stroke="#f5e4bf"/><text x="804" y="662" text-anchor="middle" font-size="9" fill="#a35a0b">待审查</text><text x="857" y="662" class="tiny muted">09:18</text>
+    <line x1="286" y1="683" x2="931" y2="683" stroke="#f0f1f3"/>
+    <text x="307" y="709" class="small bold">边界值触发除零异常</text><text x="584" y="709" class="tiny">metrics</text><text x="690" y="709" class="tiny" font-family="monospace">lexical_graph_budget</text><rect x="779" y="695" width="44" height="20" rx="5" fill="#f3f8ff" stroke="#d8e6f6"/><text x="801" y="709" text-anchor="middle" font-size="9" fill="#315d92">执行中</text><text x="857" y="709" class="tiny muted">昨天</text>
+    <line x1="286" y1="730" x2="931" y2="730" stroke="#f0f1f3"/>
+    <rect x="457" y="757" width="304" height="65" rx="10" fill="#f8fbfa" stroke="#edf0f1"/>
+    <circle cx="485" cy="785" r="13" fill="#edf7f5"/><path d="M480 785h10m-5-5v10" stroke="#28796f" stroke-width="1.6"/>
+    <text x="508" y="780" class="small bold">所有运行均可追踪</text><text x="508" y="798" class="tiny muted">LangGraph 节点、证据、Diff 与测试结果</text>
+  </g>
+  <g class="shadow">
+    <rect x="948" y="490" width="434" height="365" rx="12" class="panel"/>
+    <text x="969" y="520" class="medium bold">开始使用</text><text x="969" y="540" class="tiny muted">三步开始一个可追踪的实验</text>
+    <rect x="969" y="565" width="392" height="75" rx="9" fill="#fff" stroke="#eef0f2"/>
+    <rect x="983" y="582" width="39" height="39" rx="9" fill="#f8fbfa" stroke="#edf0f1"/><text x="1002" y="607" text-anchor="middle" font-size="17" fill="#337b72">▧</text>
+    <text x="1034" y="592" class="small bold">导入 Python 仓库</text><text x="1034" y="611" class="tiny muted">上传源码 ZIP，构建符号与依赖图</text><text x="1338" y="606" class="medium muted">↗</text>
+    <rect x="969" y="652" width="392" height="75" rx="9" fill="#fff" stroke="#eef0f2"/>
+    <rect x="983" y="670" width="39" height="39" rx="9" fill="#f8fbfa" stroke="#edf0f1"/><text x="1002" y="695" text-anchor="middle" font-size="17" fill="#337b72">◉</text>
+    <text x="1034" y="680" class="small bold">检查本地 Gemma 4</text><text x="1034" y="699" class="tiny muted">确认 GGUF 权重与官方 llama.cpp 已就绪</text><text x="1338" y="694" class="medium muted">↗</text>
+    <rect x="969" y="739" width="392" height="75" rx="9" fill="#fff" stroke="#eef0f2"/>
+    <rect x="983" y="757" width="39" height="39" rx="9" fill="#f8fbfa" stroke="#edf0f1"/><text x="1002" y="782" text-anchor="middle" font-size="17" fill="#337b72">⌕</text>
+    <text x="1034" y="767" class="small bold">提出一个修复问题</text><text x="1034" y="786" class="tiny muted">选择检索策略，查看证据与测试结果</text><text x="1338" y="781" class="medium muted">↗</text>
+  </g>
+  <text x="286" y="877" class="tiny muted">界面布局示意图 · 真实页面展示运行时仓库、运行和实验数据</text>
+</svg>

@@ -1,0 +1,6 @@
+from typing import Protocol
+
+
+class ModelProvider(Protocol):
+    async def check(self) -> dict: ...
+    async def generate(self, prompt: str, seed: int | None = None) -> dict: ...

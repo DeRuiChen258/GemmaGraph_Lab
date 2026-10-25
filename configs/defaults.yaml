@@ -1,0 +1,12 @@
+max_attempts: 3
+max_model_calls: 12
+active_timeout_seconds: 900
+test_timeout_seconds: 120
+evidence_tokens: 8000
+max_changed_files: 5
+seed_count: 8
+graph_hops: 2
+max_candidates: 64
+lexical_weight: 0.6
+graph_weight: 0.25
+failure_weight: 0.15

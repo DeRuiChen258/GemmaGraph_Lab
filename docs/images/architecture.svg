@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="920" viewBox="0 0 1440 920" role="img" aria-labelledby="title desc">
+  <title id="title">GemmaGraph Lab 系统架构</title>
+  <desc id="desc">React 工作台通过 FastAPI 将任务交给 Worker；Worker 使用 LangGraph、本地 Gemma 4、AST 代码索引和 Docker 沙箱，并将数据写入本机 SQLite 与文件目录。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f7faf9"/><stop offset="1" stop-color="#f2f5f8"/></linearGradient>
+    <linearGradient id="hero" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#ecf7f4"/><stop offset="1" stop-color="#f7fbfa"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="9" flood-color="#183b36" flood-opacity=".08"/></filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#8ba8a2"/></marker>
+    <marker id="arrow-teal" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#0f766e"/></marker>
+    <style>
+      text{font-family:Inter,"Noto Sans CJK SC","Microsoft YaHei",sans-serif;fill:#243145}
+      .small{font-size:14px;fill:#728091}.label{font-size:13px;font-weight:700;letter-spacing:1.2px;fill:#0f766e}
+      .title{font-size:30px;font-weight:700;letter-spacing:-.5px}.card-title{font-size:19px;font-weight:700}
+      .body{font-size:14px;fill:#627082}.pill{font-size:12px;font-weight:650;fill:#32766d}
+      .step{font-size:12px;font-weight:650}.foot{font-size:12px;fill:#788594}
+    </style>
+  </defs>
+  <rect width="1440" height="920" rx="24" fill="url(#bg)"/>
+  <text x="62" y="61" class="label">LOCAL · OBSERVABLE · REPRODUCIBLE</text>
+  <text x="62" y="103" class="title">GemmaGraph Lab 系统结构</text>
+  <text x="62" y="132" class="small">界面、任务队列、LangGraph 状态、模型推理与隔离验证各司其职，运行数据留在本机。</text>
+
+  <!-- application layer -->
+  <g filter="url(#shadow)">
+    <rect x="62" y="168" width="330" height="158" rx="16" fill="#fff" stroke="#dfe8e5"/>
+    <rect x="62" y="168" width="7" height="158" rx="4" fill="#0f766e"/>
+    <rect x="88" y="190" width="36" height="36" rx="10" fill="#eaf5f2"/>
+    <text x="106" y="214" text-anchor="middle" font-size="18" font-weight="700" fill="#0f766e">UI</text>
+    <text x="138" y="207" class="card-title">React + Vite</text>
+    <text x="88" y="255" class="body">修复任务 · 仓库浏览 · AST 关系图</text>
+    <text x="88" y="278" class="body">事件时间线 · Diff 审查 · 实验比较</text>
+    <rect x="88" y="294" width="105" height="20" rx="10" fill="#edf7f5"/><text x="140" y="308" text-anchor="middle" class="pill">REST + SSE</text>
+
+    <rect x="555" y="168" width="330" height="158" rx="16" fill="#fff" stroke="#dfe8e5"/>
+    <rect x="555" y="168" width="7" height="158" rx="4" fill="#4c7894"/>
+    <rect x="581" y="190" width="36" height="36" rx="10" fill="#edf4f8"/>
+    <text x="599" y="214" text-anchor="middle" font-size="16" font-weight="700" fill="#416b86">API</text>
+    <text x="631" y="207" class="card-title">FastAPI 服务</text>
+    <text x="581" y="255" class="body">输入校验 · REST 路由 · SSE 事件</text>
+    <text x="581" y="278" class="body">队列入队 · 数据服务 · 文件安全检查</text>
+    <rect x="581" y="294" width="105" height="20" rx="10" fill="#eff5f9"/><text x="633" y="308" text-anchor="middle" class="pill" fill="#416b86">127.0.0.1:8010</text>
+
+    <rect x="1048" y="168" width="330" height="158" rx="16" fill="#fff" stroke="#dfe8e5"/>
+    <rect x="1048" y="168" width="7" height="158" rx="4" fill="#b77935"/>
+    <rect x="1074" y="190" width="36" height="36" rx="10" fill="#fff5e8"/>
+    <text x="1092" y="214" text-anchor="middle" font-size="15" font-weight="700" fill="#a56725">JOB</text>
+    <text x="1124" y="207" class="card-title">单实例 Worker</text>
+    <text x="1074" y="255" class="body">租约队列 · 恢复与取消 · 运行编排</text>
+    <text x="1074" y="278" class="body">LangGraph checkpoint · 产物保存</text>
+    <rect x="1074" y="294" width="124" height="20" rx="10" fill="#fff7ec"/><text x="1136" y="308" text-anchor="middle" class="pill" fill="#a56725">异步执行任务</text>
+  </g>
+  <path d="M392 247H540" fill="none" stroke="#8ba8a2" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M885 247H1033" fill="none" stroke="#8ba8a2" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="466" y="231" text-anchor="middle" class="foot">HTTP /api/v1</text>
+  <text x="959" y="231" text-anchor="middle" class="foot">持久队列</text>
+
+  <!-- worker dependencies -->
+  <text x="62" y="376" class="label">WORKER DEPENDENCIES</text>
+  <g filter="url(#shadow)">
+    <rect x="62" y="396" width="382" height="126" rx="14" fill="#fff" stroke="#e1e8e7"/>
+    <circle cx="96" cy="431" r="14" fill="#e9f5f1"/><path d="M89 431h14M96 424v14" stroke="#0f766e" stroke-width="2"/>
+    <text x="122" y="436" class="card-title" font-size="17">Python AST 代码图</text>
+    <text x="88" y="473" class="body">文件、类、函数、导入和静态调用关系</text>
+    <text x="88" y="496" class="small">检索证据按预算排序并绑定源码快照</text>
+
+    <rect x="529" y="396" width="382" height="126" rx="14" fill="#fff" stroke="#d9eae5"/>
+    <circle cx="563" cy="431" r="14" fill="#e9f5f1"/><path d="M556 436l7-10 7 10M563 426v12" fill="none" stroke="#0f766e" stroke-width="2"/>
+    <text x="589" y="436" class="card-title" font-size="17">本地 Gemma 4 E4B</text>
+    <text x="555" y="473" class="body">GGUF 权重 → 官方 llama.cpp 子进程</text>
+    <text x="555" y="496" class="small">CUDA 13.4 · sm_120 · 不回退到 CPU</text>
+
+    <rect x="996" y="396" width="382" height="126" rx="14" fill="#fff" stroke="#eae2d5"/>
+    <circle cx="1030" cy="431" r="14" fill="#fff5e8"/><rect x="1022" y="424" width="16" height="14" rx="2" fill="none" stroke="#a56725" stroke-width="2"/><path d="M1025 420h10" stroke="#a56725" stroke-width="2"/>
+    <text x="1056" y="436" class="card-title" font-size="17">Docker 测试沙箱</text>
+    <text x="1022" y="473" class="body">pytest 固定 Profile · 禁用网络</text>
+    <text x="1022" y="496" class="small">只读根目录 · 非 root · 限定资源</text>
+  </g>
+  <path d="M1213 326V357H253V386" fill="none" stroke="#d0dcd8" stroke-width="1.7" marker-end="url(#arrow)"/>
+  <path d="M1213 357H720V386" fill="none" stroke="#d0dcd8" stroke-width="1.7" marker-end="url(#arrow)"/>
+  <path d="M1213 357H1187V386" fill="none" stroke="#d0dcd8" stroke-width="1.7" marker-end="url(#arrow)"/>
+
+  <!-- workflow -->
+  <rect x="62" y="557" width="1316" height="211" rx="18" fill="url(#hero)" stroke="#d9e8e3"/>
+  <text x="88" y="592" class="label">LANGGRAPH STATEGRAPH</text>
+  <text x="88" y="619" font-size="18" font-weight="700">一次修复运行</text>
+  <text x="88" y="642" class="small">节点状态、事件、检查点可追踪</text>
+  <g>
+    <rect x="88" y="668" width="142" height="56" rx="10" fill="#fff" stroke="#cfe2dc"/><text x="159" y="691" text-anchor="middle" class="step">校验任务</text><text x="159" y="709" text-anchor="middle" class="foot">validate</text>
+    <rect x="249" y="668" width="142" height="56" rx="10" fill="#fff" stroke="#cfe2dc"/><text x="320" y="691" text-anchor="middle" class="step">准备与索引</text><text x="320" y="709" text-anchor="middle" class="foot">workspace + AST</text>
+    <rect x="410" y="668" width="142" height="56" rx="10" fill="#fff" stroke="#cfe2dc"/><text x="481" y="691" text-anchor="middle" class="step">基线测试</text><text x="481" y="709" text-anchor="middle" class="foot">Docker pytest</text>
+    <rect x="571" y="668" width="142" height="56" rx="10" fill="#fff" stroke="#cfe2dc"/><text x="642" y="691" text-anchor="middle" class="step">检索与规划</text><text x="642" y="709" text-anchor="middle" class="foot">AST evidence</text>
+    <rect x="732" y="668" width="142" height="56" rx="10" fill="#fff" stroke="#cfe2dc"/><text x="803" y="691" text-anchor="middle" class="step">生成与校验补丁</text><text x="803" y="709" text-anchor="middle" class="foot">Diff validation</text>
+    <rect x="893" y="668" width="142" height="56" rx="10" fill="#fff" stroke="#cfe2dc"/><text x="964" y="691" text-anchor="middle" class="step">应用与复测</text><text x="964" y="709" text-anchor="middle" class="foot">isolated test</text>
+    <rect x="1054" y="668" width="142" height="56" rx="10" fill="#fff" stroke="#cfe2dc"/><text x="1125" y="691" text-anchor="middle" class="step">人工审查</text><text x="1125" y="709" text-anchor="middle" class="foot">interrupt / resume</text>
+    <rect x="1215" y="668" width="136" height="56" rx="10" fill="#0f766e" stroke="#0f766e"/><text x="1283" y="691" text-anchor="middle" class="step" fill="#fff">记录结果</text><text x="1283" y="709" text-anchor="middle" font-size="11" fill="#d8f1eb">finalize</text>
+    <path d="M230 696H241M391 696H402M552 696H563M713 696H724M874 696H885M1035 696H1046M1196 696H1207" fill="none" stroke="#0f766e" stroke-width="2" marker-end="url(#arrow-teal)"/>
+  </g>
+  <path d="M965 730V746H639V730" fill="none" stroke="#8ba8a2" stroke-width="1.6" stroke-dasharray="5 5" marker-end="url(#arrow)"/>
+  <text x="800" y="761" text-anchor="middle" class="foot">验证未通过时进入 reflect，结合剩余预算决定重检索、重规划或转人工审查</text>
+
+  <!-- storage strip -->
+  <rect x="62" y="794" width="1316" height="78" rx="14" fill="#fff" stroke="#e1e7e7"/>
+  <text x="88" y="827" class="label">LOCAL STORAGE</text>
+  <text x="88" y="850" class="small">.data/</text>
+  <line x1="245" y1="808" x2="245" y2="858" stroke="#e8ecec"/>
+  <text x="275" y="826" font-size="14" font-weight="700">app.sqlite3</text><text x="275" y="848" class="foot">业务数据与运行队列</text>
+  <text x="520" y="826" font-size="14" font-weight="700">checkpoints.sqlite3</text><text x="520" y="848" class="foot">LangGraph 状态恢复</text>
+  <text x="825" y="826" font-size="14" font-weight="700">sources / indexes</text><text x="825" y="848" class="foot">不可变仓库快照与 AST 索引</text>
+  <text x="1144" y="826" font-size="14" font-weight="700">workspaces / artifacts</text><text x="1144" y="848" class="foot">运行副本、Diff、测试结果与导出</text>
+</svg>
